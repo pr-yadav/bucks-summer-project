@@ -9,7 +9,7 @@ All the dependicies needed fr both can be installed using
 > npm install path</br>
 > npm install prompt-sync()</br>
 </br>
-I have some pairs of correct signature
+I have some pairs of correct signature</br>
 > text :</br>
 > signature :</br>
 > text :</br>
