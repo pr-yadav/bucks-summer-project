@@ -28,3 +28,4 @@ signature :2f99180e732f59b820baeea95bd8d95e8f1f2ec0207e1e3a80659bb52889c6ceceec7
 </br></br>
 </br>
 *We can generate more pairs through script.js*
+***Make sure public.pub and private.pem are in the same folder as index.js and script.js***
