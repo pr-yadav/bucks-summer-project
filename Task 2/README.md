@@ -10,16 +10,16 @@ All the dependicies needed fr both can be installed using
 > npm install prompt-sync()</br>
 </br>
 I have some pairs of correct signature
->>text :
->>signature :
->>text :
->>signature :
->>text :
->>signature :
-Some incorrect pairs are
->>text :
->>signature :
->>text :
->>signature :
->>text :
->>signature :
+>>text :</br>
+>>signature :</br>
+>>text :</br>
+>>signature :</br>
+>>text :</br>
+>>signature :</br>
+Some incorrect pairs are</br>
+>>text :</br>
+>>signature :</br>
+>>text :</br>
+>>signature :</br>
+>>text :</br>
+>>signature :</br>
