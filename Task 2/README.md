@@ -7,19 +7,19 @@ All the dependicies needed fr both can be installed using
 > npm install fs</br>
 > npm install crypto</br>
 > npm install path</br>
-> npm install prompt-sync()</br>
+> npm install prompt-sync</br>
 </br>
 I have some pairs of correct signature</br>
-> text :</br>
-> signature :</br>
-> text :</br>
-> signature :</br>
-> text :</br>
-> signature :</br>
+>> text :</br>
+>> signature :</br>
+>> text :</br>
+>> signature :</br>
+>> text :</br>
+>> signature :</br>
 Some incorrect pairs are</br>
-> text :</br>
-> signature :</br>
-> text :</br>
-> signature :</br>
-> text :</br>
-> signature :</br>
+>> text :</br>
+>> signature :</br>
+>> text :</br>
+>> signature :</br>
+>> text :</br>
+>> signature :</br>
