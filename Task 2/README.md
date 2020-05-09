@@ -4,10 +4,10 @@ It has 2 main files **script.js** and **index.js**.
 #### using script.js we can create signature pairs using private key
 #### index.js checks whether the signature is valid using public key
 All the dependicies needed fr both can be installed using
-> npm install fs</br>
-> npm install crypto</br>
-> npm install path</br>
-> npm install prompt-sync</br>
+>> npm install fs</br>
+>> npm install crypto</br>
+>> npm install path</br>
+>> npm install prompt-sync</br>
 </br>
 ##### I have some pairs of correct signature</br>
 > **text** : hello</br>
