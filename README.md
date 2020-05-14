@@ -1,2 +1,2 @@
-# bucks-summer-project
-A place for all the assignments of crypto summer project based on blockchain.
+# IITKBucks-Summer-Project
+A place for all the assignments of Pclub summer project IITKBucks of implementing a cryptocurrency based on blockchain method and mining it.
