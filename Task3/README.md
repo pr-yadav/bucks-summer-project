@@ -1,6 +1,6 @@
 # Task 3
 ### This program stores the details of transaction provided by the user in a file named <sha256 of bits oftransaction data>.dat
-To install the dependencies</br
+To install the dependencies<\br>
   > npm i sha256
   > npm i prompt-sync
   > npm i path
