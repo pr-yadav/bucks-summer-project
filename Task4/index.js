@@ -27,7 +27,7 @@ try {
     var transaction = fs.readFileSync(path.join(__dirname, transaction_file));
 } catch (err) {
    console.log("File not found using default file");
-   var transaction = fs.readFileSync(path.join(__dirname, '259d62d0ce412a5597ca93ae1c9b1e6a59f853a41ae6d514770af5cd08990de8.dat'), 'utf8');
+   var transaction = fs.readFileSync(path.join(__dirname, '010.dat'), 'utf8');
 } 
 
 var tmp=0;
