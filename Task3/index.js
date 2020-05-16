@@ -32,6 +32,7 @@ function IntToBytes (num,bits){
     }
     else{
         var buf =Buffer.alloc(8)
+        num = BigInt(num)
         buf.writeBigInt64BE(num)
     }
     return buf
@@ -44,7 +45,8 @@ function main(){
         id = prompt("Enter the transaction ID : ");
         idx = prompt("Enter the index : ");
         signature = prompt("Enter the signature : ")
-        transaction=Buffer.concat([transaction,Buffer.from(id,'hex'),IntToBytes(idx,4),IntToBytes(Buffer.byteLength(signature, 'hex')),Buffer.from(signature,'hex')])
+        //transaction=Buffer.concat([transaction,Buffer.from(id,'hex'),IntToBytes(idx,4),Buffer.from(signature,'hex')])
+        transaction=Buffer.concat([transaction,Buffer.from(id,'hex'),IntToBytes(idx,4),IntToBytes(Buffer.byteLength(signature, 'hex'),4),Buffer.from(signature,'hex')])
         Inputs[i] = new input(id,idx,Buffer.byteLength(signature, 'hex'),signature);
     }
     
@@ -54,8 +56,8 @@ function main(){
     for(var i=0;i<no_of_outputs;i++){
         var coins = prompt("Enter the number of coins : ");
         var key_file = prompt('Enter the path of file containing public key :');
-        var key = fs.readFileSync(path.join(__dirname, key_file), 'utf8');
-        transaction=Buffer.concat([transaction,IntToBytes( coins,8),IntToBytes(Buffer.byteLength(key, 'utf8')),Buffer.from(key,"utf8")])
+        var key = fs.readFileSync(path.join(__dirname, key_file));
+        transaction=Buffer.concat([transaction,IntToBytes( coins,8),IntToBytes(key.length,4),key])
         Outputs[i] = new output(coins,Buffer.byteLength(key, 'utf8'),key);
     }
 }
@@ -64,7 +66,7 @@ function main(){
 main();
 var filename = sha256(transaction) + '.dat'
 console.log(filename)
-fs.writeFile(filename, transaction_bits, function (err) {
+fs.writeFile(filename, transaction, function (err) {
     if (err) return console.log(err);
     console.log("File created with Filename " + filename);
 });
