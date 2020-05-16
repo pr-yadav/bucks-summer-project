@@ -1,7 +1,6 @@
 const prompt = require('prompt-sync')()
 const fs = require('fs');
 const path = require('path');
-const conv = require('binstring');
 const sha256 =require('sha256')
 class input{
     constructor(id,idx,length_of_sign,sign){
@@ -25,48 +24,33 @@ var Inputs = new Array;
 var Outputs = new Array;
 transaction_file = prompt("Enter the name of file containing transaction data : ");
 try {
-    var transaction = fs.readFileSync(path.join(__dirname, transaction_file), 'utf8');
+    var transaction = fs.readFileSync(path.join(__dirname, transaction_file));
 } catch (err) {
    console.log("File not found using default file");
    var transaction = fs.readFileSync(path.join(__dirname, '259d62d0ce412a5597ca93ae1c9b1e6a59f853a41ae6d514770af5cd08990de8.dat'), 'utf8');
 } 
 
-
-function BinaryToString(str) {
-    str = str.match(/.{1,8}/g).join(" ");
-
-    var newBinary = str.split(" ");
-    var binaryCode = [];
-
-    for (i = 0; i < newBinary.length; i++) {
-        binaryCode.push(String.fromCharCode(parseInt(newBinary[i], 2)));
-    }
-    
-    return binaryCode.join("");
-}
-
 var tmp=0;
+
 function main(){
-    var no_of_inputs = parseInt(transaction.slice(tmp + 0,tmp + 32),2)
-    tmp=32;
+    var no_of_inputs = transaction.readUInt32BE(0,4)
+    tmp=4;
     for(var i=0;i<no_of_inputs;i++){
-        id = conv((BinaryToString(transaction.slice(0+tmp,256+tmp))),{ in : 'binary', out : 'hex'})
-        idx = parseInt(transaction.slice(256+tmp,288+tmp),2)
-        sign_length = parseInt(transaction.slice(288+tmp,320+tmp),2)
-        signature = BinaryToString(transaction.slice(320+tmp,320+sign_length*8+tmp))
-        tmp=tmp+320+sign_length*8
+        id = transaction.toString("hex", 0+tmp, tmp +32)
+        idx = transaction.readUInt32BE(tmp+32,tmp+36)
+        sign_length = transaction.readUInt32BE(tmp+36,tmp+40)
+        signature = transaction.toString("hex", 40+tmp, tmp +40 + sign_length)
+        tmp=tmp+40+sign_length
         Inputs[i] = new input(id,idx,sign_length,signature);
     }
     
-    var no_of_outputs = parseInt(transaction.slice(tmp,tmp+32),2);
-    tmp=tmp+32;
-    
-
+    var no_of_outputs = transaction.readUInt32BE(tmp,tmp+4)
+    tmp=tmp+4;
     for(var i=0;i<no_of_outputs;i++){
-        var coins = parseInt(transaction.slice(tmp,tmp+64),2)
-        var key_len = parseInt(transaction.slice(tmp+64,tmp+96),2)
-        var key = BinaryToString(transaction.slice(tmp+96,tmp+96+key_len*8))
-        tmp=tmp+96+key_len*8
+        var coins = parseInt(transaction.toString("hex",tmp,tmp+8),16)
+        var key_len = transaction.readUInt32BE(tmp+8,tmp+12)
+        var key = transaction.toString("utf8", tmp+12, tmp +12 + key_len)
+        tmp=tmp+12+key_len
         Outputs[i] = new output(coins,key_len,key);
     }
     console.log('Transaction ID : '+(sha256(transaction)))
