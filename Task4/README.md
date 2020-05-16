@@ -4,8 +4,7 @@
   > npm i sha256</br>
   > npm i prompt-sync</br>
   > npm i path</br>
-  > npm i fs</br>
-  </br></br>
+  > npm i fs
 #### To run the program</br>
   >node index.js</br>
   or </br>
