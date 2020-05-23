@@ -6,7 +6,9 @@ npm i prompt-sync
 npm i sha256
 ```
 ### To run
-```node index.js```
+```
+node index.js
+```
 ### Input
 ```
 Index: 5
