@@ -1,0 +1,16 @@
+{
+  "name": "task5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Priyanshu",
+  "license": "ISC",
+  "dependencies": {
+    "nano-time": "^1.0.0",
+    "prompt-sync": "^4.2.0",
+    "sha256": "^0.2.0"
+  }
+}
