@@ -1,4 +1,12 @@
 # Task 5
+### To install dependencies
+```
+npm i nano-time
+npm i prompt-sync
+npm i sha256
+```
+### To run
+```node index.js```
 ### Input
 ```
 Index: 5
