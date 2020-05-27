@@ -7,7 +7,7 @@ const options = new URL('https://localhost:8787/add');
 addRouter.use(bodyParser.json());
 addRouter.route('/')
 map = new Map()
-peers = ["106.207.176.14:8787/add","106.207.176.14:567/add","106.207.176.14:876/add"]
+peers = ["http://d0e96ed9.ngrok.io/add"]
 addRouter.route('/')
 .all((req,res,next) => {
     res.statusCode = 200;
@@ -24,27 +24,20 @@ addRouter.route('/')
     })
     req.on('end',()=>{
         body = JSON.parse(body);
-        if(map.has(body.key)== false){
-            map.set(body.key,body.value)
-            res.end('Data is logged');
-            body = JSON.stringify(body);
-            console.log("Request by user : "+body)
-            body = JSON.parse(body);
+        var key = body.key;
+        var value =body.value;
+        if(map.has(key)== false){
+            console.log("Request by user : "+JSON.stringify(body))
             peers.forEach(peer => {
-                console.log(body.key)
-                
-                axios.post(peer,{
-                    key : body.key,
-                    value : body.value
-                }).then( (res) =>{
-                    console.log("HI1")
-                    console.log("Request sent to : "+peer)
-                    console.log("Peer Response Status" + (res.statusCode)+"Peer response Body"+res.data);
-                }).catch((err)=>{
-                    console.log("Error sending data to : "+peer);
-                    console.log("Error : ")
-                })
-            });
+                console.log("Request sent to : "+peer);
+                axios.post (peer, { "key" : key,"value" : value})
+                    .catch((err) => {
+                        console.log("Error in sending request to : "+peer);
+                        console.log(err);
+                    })
+            })
+            map.set(key,value);
+            res.send('Data is logged');
         }
         else {
             res.end('Key already present in data')
