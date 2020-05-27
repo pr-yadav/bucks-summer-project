@@ -3,12 +3,12 @@
 #### To install dependencies:
 ```
 npm i axios
+npm i body-parser
+npm i express
+npm i morgan
 ```
 #### To run
 ```
 node index.js
-npm i body-parser
-npm i express
-npm i morgan
 ```
 ##### For adding peers they can be added to peers array in ./routes/add.js
