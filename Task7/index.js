@@ -9,7 +9,7 @@ const worker = new Worker('./nonce.js')
 app.use(bodyParser.json());
 app.use(logger('dev'));
 
-var ans = {"result" : "searching","nonce" : -1};
+var ans = {"nonce" : -1,"result" : "searching"};
 app.post('/start',(req,res)=>{
     console.log(req.body.data);
     worker.postMessage(req.body.data);
