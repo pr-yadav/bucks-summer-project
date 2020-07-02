@@ -13,7 +13,7 @@ while(1){
     if(hex<0x0000000F00000000000000000000000000000000000000000000000000000000){
         console.log(result);
         console.log(string+i);
-        parentPort.postMessage(i);
+        parentPort.postMessage(i+"");
         break;
     }
     i++;
