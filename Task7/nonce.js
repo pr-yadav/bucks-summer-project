@@ -12,7 +12,7 @@ while(1){
     var hex= parseInt("0x"+result);
     if(hex<0x0000000F00000000000000000000000000000000000000000000000000000000){
         console.log(result);
-        console.log(string+i);
+        console.log(data+i);
         parentPort.postMessage(i+"");
         break;
     }
